@@ -1,0 +1,105 @@
+import Axios from "axios";
+import React, { useEffect, useState, onDelete } from "react";
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Toast from 'react-bootstrap/Toast';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
+
+
+
+function Home() {
+    const [show, setShow] = useState(false);
+
+    const navigate = useNavigate();
+    const refresh = () => window.location.reload(true)
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data } = await Axios.get(("http://localhost:8000/users"))
+            setData(data)
+        }
+        fetchProducts()
+    }, [])
+    useEffect(() => {
+        getData();
+    }, []);
+    const getData = async () => {
+        const { data } = await Axios.get("http://localhost:8000/delete/User");
+        setData(data.data);
+    };
+    const deleteUser = async (id) => {
+        try {
+            await Axios.delete(`http://localhost:8000/delete/User/${id}`);
+            getData();
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+
+
+    return (
+        <>
+            <br /><br /><br />
+            <Table striped>
+
+                <thead>
+                    <tr>
+                        <th style={{ color: "blue" }}>Email</th>
+                        <th style={{ color: "blue" }}>password</th>
+                        <th style={{ color: "blue" }}>name</th>
+                        <th style={{ color: "blue" }}>Prenom</th>
+                        <th style={{ color: "blue" }}>Tele</th>
+                        <th style={{ color: "blue" }}>Matricule</th>
+                        <th style={{ color: "blue" }}>edit/delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    {data.map((item) => (
+                        <tr key={item._id}>
+                            <td>{item.email} </td>
+
+                            <td>{item.password} </td>
+                            <td>{item.name}</td>
+                            <td>{item.Prenom}</td>
+                            <td>{item.Tele}</td>
+                            <td>{item.Matricule}</td>
+
+                            <td>
+                                <button>
+                                    <Link
+                                        to={`/edit/${item._id}`}
+                                        className="button is-info is-small mr-1">
+                                        Edit
+                                    </Link></button>
+                                <button
+                                    onClick={() => deleteUser(item._id)}
+                                    className="button is-danger is-small">
+                                    Delete
+                                </button>
+                                <button onClick={refresh}>Refresh</button>
+                            </td>
+
+
+
+                        </tr>
+                    ))}
+                </tbody>
+
+            </Table >
+
+        </>
+    );
+}
+export default Home;
