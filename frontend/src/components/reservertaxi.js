@@ -19,7 +19,7 @@ const Reservertaxi = () => {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("https://exam-lamini-amal-react.onrender.com/reservertaxi", {
+            await Axios.post("http://localhost:8000/reservertaxi", {
                 Prenom, Matricule, Tele, destination, num
             })
                 .then(res => {

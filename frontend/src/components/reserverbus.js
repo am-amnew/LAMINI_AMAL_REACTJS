@@ -22,7 +22,7 @@ const Reserverbus = () => {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("https://exam-lamini-amal-react.onrender.com/reserverbus", {
+            await Axios.post("http://localhost:8000/reserverbus", {
                 Prenom, Matricule, Tele, email, PDP, PDA, adress, ligne
             })
                 .then(res => {

@@ -16,7 +16,7 @@ function Home() {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const { data } = await Axios.get(("https://exam-lamini-amal-react.onrender.com/showcovoi"))
+            const { data } = await Axios.get(("http://localhost:8000/showcovoi"))
             setData(data)
         }
         fetchProducts()
@@ -25,12 +25,12 @@ function Home() {
         getData();
     }, []);
     const getData = async () => {
-        const { data } = await Axios.get("https://exam-lamini-amal-react.onrender.com/delete/covoi");
+        const { data } = await Axios.get("http://localhost:8000/delete/covoi");
         setData(data.data);
     };
     const deleteUser = async (id) => {
         try {
-            await Axios.delete(`https://exam-lamini-amal-react.onrender.com/delete/covoi/${id}`);
+            await Axios.delete(`http://localhost:8000/delete/covoi/${id}`);
             getData();
 
 

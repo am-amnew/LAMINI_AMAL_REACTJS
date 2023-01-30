@@ -16,7 +16,7 @@ function SignuP() {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("https://exam-lamini-amal-react.onrender.com/signup", {
+            await Axios.post("http://localhost:8000/signup", {
                 Matricule, Prenom, name, Tele, email, password
             })
                 .then(res => {

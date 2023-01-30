@@ -17,7 +17,7 @@ const Reservermotor = () => {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("https://exam-lamini-amal-react.onrender.com/reservermotor", {
+            await Axios.post("http://localhost:8000/reservermotor", {
                 Prenom, Nom, Matricule, Tele, heure, mat
             })
                 .then(res => {
