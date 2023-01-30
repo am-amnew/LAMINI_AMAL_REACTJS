@@ -13,7 +13,7 @@ const SigninAdmin = () => {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("http://localhost:8000/signinAdmin", {
+            await Axios.post("https://exam-lamini-amal-react.onrender.com/signinAdmin", {
                 email, password
             })
                 .then(res => {

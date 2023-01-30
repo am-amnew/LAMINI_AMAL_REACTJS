@@ -14,7 +14,7 @@ function SignuPadmin() {
     async function submit(e) {
         e.preventDefault();
         try {
-            await Axios.post("http://localhost:8000/signuPadmin", {
+            await Axios.post("https://exam-lamini-amal-react.onrender.com/signuPadmin", {
                 Prenom, Tele, email, password
             })
                 .then(res => {
